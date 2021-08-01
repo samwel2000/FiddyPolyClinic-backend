@@ -2,6 +2,8 @@
 import dj_database_url
 from pathlib import Path
 from decouple import config
+import cloudinary
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,6 +25,10 @@ INSTALLED_APPS = [
     # third_party apps
     'rest_framework',
     'corsheaders',
+    
+    # Media Cloudinary
+    'cloudinary',
+    'cloudinary_storage',
 
     # myapp
     'fpc_api'
@@ -87,9 +93,10 @@ DATABASES = {
 # }
 
 # Heroku: Update database configuration from $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-db_from_env['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
-DATABASES['default'].update(db_from_env)
+if not DEBUG:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    db_from_env['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -132,6 +139,15 @@ STATIC_ROOT = f'{BASE_DIR}/staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Cloudinary stuff for serving media files
+if DEBUG:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': config('CLOUD_NAME', default=""),
+        'API_KEY': config('API_KEY', default=""),
+        'API_SECRET': config('API_SECRET', default=""),
+    }
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # media fields
 MEDIA_URL = '/media/'
 MEDIA_ROOT = f'{BASE_DIR}/media'
