@@ -89,7 +89,7 @@ if not DEBUG:
 
     # Heroku: Update database configuration from $DATABASE_URL.
     db_from_env = dj_database_url.config(conn_max_age=500)
-    db_from_env['ENGINE'] = 'django_tenants.postgresql_backend'
+    db_from_env['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
     DATABASES['default'].update(db_from_env)
 
 # Password validation
