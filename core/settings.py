@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django cors settings
 CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
+    "https://fiddypolyclinic.netlify.app",
     "https://sub.example.com",
     "http://127.0.0.1:3000",
     "http://localhost:3000"
