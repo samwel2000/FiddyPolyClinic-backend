@@ -1,0 +1,33 @@
+<!-- overriding django default colors -->
+{% extends 'admin/base.html' %}
+
+{% block extrahead %}{{ block.super }}
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* VARIABLE DEFINITIONS */
+    :root {
+        --primary: #fa8c16;
+        --secondary: #18a3eb;
+        --accent: #f5dd5d;
+        --primary-fg: #fff;
+
+        --header-color: #fafafa;
+        --header-branding-color: var(--accent);
+        --header-bg: var(--secondary);
+        --header-link-color: var(--primary-fg);
+
+        --breadcrumbs-bg: var(--primary);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    body {
+        font-family: 'Montserrat', sans-serif !important;
+    }
+</style>
+{% endblock %}
