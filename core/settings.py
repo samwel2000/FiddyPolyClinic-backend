@@ -31,10 +31,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    
+
     # Whitenoise setting
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
+
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,8 +67,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
-if DEBUG:
+
+if not DEBUG:
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -84,13 +91,6 @@ if DEBUG:
     db_from_env = dj_database_url.config(conn_max_age=500)
     db_from_env['ENGINE'] = 'django_tenants.postgresql_backend'
     DATABASES['default'].update(db_from_env)
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
