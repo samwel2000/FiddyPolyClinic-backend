@@ -10,7 +10,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 DEBUG = config('DEBUG', bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fpcbackend.herokuapp.com', 'localhost:8000']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -75,18 +75,18 @@ DATABASES = {
 
 
 # if not DEBUG:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #         'NAME': config('DB_NAME'),
-    #         'USER': config('DB_USER'),
-    #         'PASSWORD': config('DB_PASSWORD'),
-    #         'HOST': config('DB_HOST'),
-    #         'PORT': config('DB_PORT'),
-    #     }
-    # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST'),
+#         'PORT': config('DB_PORT'),
+#     }
+# }
 
-    # Heroku: Update database configuration from $DATABASE_URL.
+# Heroku: Update database configuration from $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 db_from_env['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 DATABASES['default'].update(db_from_env)
