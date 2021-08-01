@@ -2,6 +2,7 @@ from django.db import models
 from PIL import Image
 import os
 from uuid import uuid4
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 # HELPER FUNCTION FOR FILE NAMES AND IMAGE NAMES
 
@@ -35,7 +36,7 @@ class Jobs(models.Model):
     content = models.TextField()
     qualifications = models.TextField(
         blank=True, null=True, help_text="Enter qualifications separated by a comma after each qualification")
-    filefield = models.FileField(upload_to=get_file_name)
+    filefield = models.FileField(upload_to=get_file_name, storage=RawMediaCloudinaryStorage())
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self) -> str:
