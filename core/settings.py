@@ -129,11 +129,15 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Cloudinary stuff for serving media files
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUD_NAME', default=""),
-    'API_KEY': config('API_KEY', default=""),
-    'API_SECRET': config('API_SECRET', default=""),
-}
+if DEBUG:
+    CLOUDINARY_STORAGE = {
+        # 'CLOUD_NAME': config('CLOUD_NAME', default=""),
+        # 'API_KEY': config('API_KEY', default=""),
+        # 'API_SECRET': config('API_SECRET', default=""),
+        'CLOUD_NAME':'samwel2000',
+        'API_KEY':'765973774431764',
+        'API_SECRET':'EKnPZNwE65OXGnk31BogPS117zA'
+    }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # media fields
