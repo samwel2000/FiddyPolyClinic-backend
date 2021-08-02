@@ -36,7 +36,8 @@ class Jobs(models.Model):
     content = models.TextField()
     qualifications = models.TextField(
         blank=True, null=True, help_text="Enter qualifications separated by a comma after each qualification")
-    filefield = models.FileField(upload_to=get_file_name, storage=RawMediaCloudinaryStorage())
+    filefield = models.FileField(
+        upload_to=get_file_name, storage=RawMediaCloudinaryStorage())
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -56,7 +57,7 @@ class TeamMembers(models.Model):
 
     def save(self, *args, **kwargs):
         super(TeamMembers, self).save(*args, **kwargs)
-        image = Image.open(self.photo.path)
+        image = Image.open(self.photo)
         if image.width > 300 or image.height > 300:
             output_size = (200, 200)
             image.thumbnail(output_size)
