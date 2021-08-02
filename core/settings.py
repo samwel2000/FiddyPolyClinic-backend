@@ -10,9 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['fpcbackend.herokuapp.com', 'localhost:8000']
+ALLOWED_HOSTS = ['fpcbackend.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     # third_party apps
     'rest_framework',
     'corsheaders',
-    
+
     # Media Cloudinary
     'cloudinary',
     'cloudinary_storage',
@@ -81,7 +81,7 @@ DATABASES = {
 
 
 # Heroku: Update database configuration from $DATABASE_URL.
-if DEBUG:
+if not DEBUG:
     db_from_env = dj_database_url.config(conn_max_age=500)
     db_from_env['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
     DATABASES['default'].update(db_from_env)
@@ -128,7 +128,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Cloudinary stuff for serving media files
-if not DEBUG:
+if DEBUG:
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': config('CLOUD_NAME', default=""),
         'API_KEY': config('API_KEY', default=""),
