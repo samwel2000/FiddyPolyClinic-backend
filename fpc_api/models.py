@@ -1,5 +1,5 @@
 from django.db import models
-from PIL import Image
+# from PIL import Image
 import os
 from uuid import uuid4
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
@@ -55,13 +55,13 @@ class TeamMembers(models.Model):
     photo = models.ImageField(upload_to=get_file_name)
     position = models.CharField(max_length=200)
 
-    def save(self, *args, **kwargs):
-        super(TeamMembers, self).save(*args, **kwargs)
-        image = Image.open(self.photo)
-        if image.width > 300 or image.height > 300:
-            output_size = (200, 200)
-            image.thumbnail(output_size)
-            image.save(self.photo.path)
+    # def save(self, *args, **kwargs):
+    #     super(TeamMembers, self).save(*args, **kwargs)
+    #     image = Image.open(self.photo)
+    #     if image.width > 300 or image.height > 300:
+    #         output_size = (200, 200)
+    #         image.thumbnail(output_size)
+    #         image.save(self.photo.path)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
