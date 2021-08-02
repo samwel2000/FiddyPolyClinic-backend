@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
-DEBUG = True
+DEBUG = config('DEBUG', bool)
 
 ALLOWED_HOSTS = ['fpcbackend.herokuapp.com', '127.0.0.1']
 
