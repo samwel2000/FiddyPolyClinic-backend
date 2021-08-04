@@ -137,6 +137,7 @@ if DEBUG:
     }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # media fields
 MEDIA_URL = '/media/'
 MEDIA_ROOT = f'{BASE_DIR}/media'
@@ -150,6 +151,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000"
 ]
+
 CORS_ALLOW_METHODS = [
     'GET',
     'POST',

@@ -83,3 +83,15 @@ class ContactUs(models.Model):
     class Meta:
         verbose_name_plural = "User messages"
         ordering = ['-pk']
+        
+        
+class Subscribers(models.Model):
+    email = models.CharField(max_length=300)
+    created_date = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.email
+    
+    class Meta:
+        verbose_name_plural = "Newsletter subscribers"
+    

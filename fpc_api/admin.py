@@ -39,3 +39,7 @@ class ContactUssAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ContactUs, ContactUssAdmin)
+
+@admin.register(Subscribers)
+class SubscribersAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'email']

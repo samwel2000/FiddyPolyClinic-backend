@@ -25,3 +25,9 @@ class ContactUsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactUs
         exclude = ['created_date']
+
+
+class SubscribersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscribers
+        exclude = ['created_date']

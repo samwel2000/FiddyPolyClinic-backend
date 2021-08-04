@@ -25,3 +25,8 @@ class TeamMembersView(ListAPIView):
 class ContactUsView(CreateAPIView):
     queryset = ContactUs.objects.all()
     serializer_class = ContactUsSerializer
+    
+class SubscribersView(CreateAPIView):
+    queryset = Subscribers.objects.all()
+    serializer_class = SubscribersSerializer
+
